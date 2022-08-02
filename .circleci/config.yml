@@ -31,4 +31,3 @@ jobs:
           background: true
           command: |
             ./LT -user ${LT_USERNAME} -key ${LT_ACCESS_KEY}
-            sleep 40
