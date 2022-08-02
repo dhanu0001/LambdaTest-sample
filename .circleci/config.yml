@@ -48,3 +48,4 @@ jobs:
           command: echo ${LT_USERNAME}
 
       - run: npm install
+      - run: node_modules/.bin/nightwatch -e chrome
