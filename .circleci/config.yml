@@ -32,3 +32,8 @@ jobs:
           command: |
             ./LT -user anju003@ymail.com -key jZkan1f4AinKYV6e4ABLLCim37omYgiEjmgK4ePpwInnu3pmmh
             sleep 40
+
+      - run: 
+          name: "Setup custom environment variables"
+          command: |
+            echo 'export LT_USERNAME="anju003@ymail.com"' >> $BASH_ENV
