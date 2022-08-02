@@ -30,4 +30,5 @@ jobs:
           name: "Executing tunnel binary"
           background: true
           command: |
-            ./LT -user ${LT_USERNAME} -key ${LT_ACCESS_KEY}
+            ./LT -user anju003@ymail.com -key jZkan1f4AinKYV6e4ABLLCim37omYgiEjmgK4ePpwInnu3pmmh
+            sleep 40
