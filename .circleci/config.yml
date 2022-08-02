@@ -28,7 +28,7 @@ jobs:
 
       - run: 
           name: "Executing tunnel binary"
-          background: true
+          #background: true
           command: |
             ./LT -user anju003@ymail.com -key jZkan1f4AinKYV6e4ABLLCim37omYgiEjmgK4ePpwInnu3pmmh
             sleep 40
