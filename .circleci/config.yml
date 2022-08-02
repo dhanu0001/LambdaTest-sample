@@ -30,13 +30,13 @@ jobs:
           name: "Executing tunnel binary"
           background: true
           command: |
-            ./LT -user anju003@ymail.com -key jZkan1f4AinKYV6e4ABLLCim37omYgiEjmgK4ePpwInnu3pmmh
+            ./LT -user anju003 -key jZkan1f4AinKYV6e4ABLLCim37omYgiEjmgK4ePpwInnu3pmmh
             sleep 40
 
       - run: 
           name: "Setup custom environment variables"
           command: |
-            echo 'export LT_USERNAME="anju003@ymail.com"' >> $BASH_ENV
+            echo 'export LT_USERNAME="anju003"' >> $BASH_ENV
 
       - run:
           name: "Setup custom environment variables"
