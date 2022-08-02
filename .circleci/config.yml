@@ -25,3 +25,10 @@ jobs:
           command: |
             sudo apt-get install unzip
             unzip LT_Linux.zip
+
+      - run: 
+          name: "Executing tunnel binary"
+          background: true
+          command: |
+            ./LT -user <your_lambdatest_username> -key <your_lambdatest_accesskey>
+            sleep 40
