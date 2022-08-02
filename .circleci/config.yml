@@ -21,19 +21,6 @@ jobs:
             wget http://downloads.lambdatest.com/tunnel/linux/64bit/LT_Linux.zip
 
       - run: 
-          name: "Extracting tunnel binary"
-          command: |
-            sudo apt-get install unzip
-            unzip LT_Linux.zip
-
-      - run: 
-          name: "Executing tunnel binary"
-          background: true
-          command: |
-            ./LT -user anju003@ymail.com -key jZkan1f4AinKYV6e4ABLLCim37omYgiEjmgK4ePpwInnu3pmmh
-            sleep 40
-
-      - run: 
           name: "Setup custom environment variables"
           command: |
             echo 'export LT_USERNAME="anju003@ymail.com"' >> $BASH_ENV
