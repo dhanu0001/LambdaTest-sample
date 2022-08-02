@@ -1,15 +1,14 @@
 version: 2.1
+
 orbs:
-  lambda-tunnel: lambdatest/lambda-tunnel@volatile
+    lambda-tunnel: lambdatest/lambda-tunnel@volatile
+
 workflows:
-  browser_test:
-    jobs:
-      - lambdatest/with_tunnel:
-          tunnel_name: chrome
-          lambdatest_email: anju003@ymail.com
-          steps:
-            - run:
-                command: |
-                  npm install
-                  export LAMBDATEST_USERNAME=anju003
-                  node_modules/.bin/nightwatch -e chrome
+    run_test:
+        jobs:
+          - lambdatest/with_tunnel:
+              tunnel_name: chrome
+              lambdatest_email: anju003@ymail.com
+              steps:
+                - run:
+                    command: npm install
