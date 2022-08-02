@@ -7,19 +7,13 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/node:8.0
- 
+      - image: circleci/node:7.10
       # Specify service dependencies here if necessary
  
     working_directory: ~/Nightwatch-circleci-selenium
     steps:
       - checkout
       
-      - run: 
-          name: "Downloading tunnel binary"
-          command: |
-            wget http://downloads.lambdatest.com/tunnel/linux/64bit/LT_Linux.zip
-
       - run: 
           name: "Setup custom environment variables"
           command: |
@@ -40,4 +34,4 @@ jobs:
             # fallback to using the latest cache if no exact match is found
 
       - run: npm install
-      - run: node_modules/.bin/nightwatch -e chrome // Executing test in bash.
+      - run: node_modules/.bin/nightwatch -e chrome
