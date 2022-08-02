@@ -42,3 +42,7 @@ jobs:
           name: "Setup custom environment variables"
           command: |
             echo 'export LT_ACCESS_KEY="jZkan1f4AinKYV6e4ABLLCim37omYgiEjmgK4ePpwInnu3pmmh"' >> $BASH_ENV
+
+      - run: # test what branch we're on.
+          name: "Here is the LT_Username : "
+          command: echo ${LT_USERNAME}
