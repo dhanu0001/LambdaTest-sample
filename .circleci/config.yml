@@ -46,6 +46,11 @@ jobs:
       - run: # test what branch we're on.
           name: "Here is the LT_Username : "
           command: echo ${LT_USERNAME}
+          
+      - restore_cache:
+         keys:
+           - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
 
       - run: npm install
       - run: node_modules/.bin/nightwatch -e chrome
