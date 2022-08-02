@@ -12,3 +12,10 @@ jobs:
       # Specify service dependencies here if necessary
  
     working_directory: ~/Nightwatch-circleci-selenium
+    steps:
+      - checkout
+      
+      - run: 
+          name: "Downloading tunnel binary"
+          command: |
+            wget http://downloads.lambdatest.com/tunnel/linux/64bit/LT_Linux.zip
