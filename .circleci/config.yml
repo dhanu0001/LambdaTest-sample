@@ -1,14 +1,14 @@
-version: 2.1
-
-orbs:
-    lambda-tunnel: lambdatest/lambda-tunnel@volatile
-
-workflows:
-    run_test:
-        jobs:
-          - lambdatest/with_tunnel:
-              tunnel_name: chrome
-              lambdatest_email: anju003@ymail.com
-              steps:
-                - run:
-                    command: npm install
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:8.0
+ 
+      # Specify service dependencies here if necessary
+ 
+    working_directory: ~/Nightwatch-circleci-selenium
