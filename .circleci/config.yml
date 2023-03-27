@@ -62,4 +62,4 @@ jobs:
 workflows:
   browser-test:
     jobs:
-      - build
+      - build 
