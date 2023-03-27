@@ -17,12 +17,12 @@ jobs:
       - run: 
           name: "Setup custom environment variables"
           command: |
-            echo 'export LT_USERNAME="anju003@ymail.com"' >> $BASH_ENV
+            echo 'export LT_USERNAME="dhanu.devops9907@gmail.com"' >> $BASH_ENV
 
       - run:
           name: "Setup custom environment variables"
           command: |
-            echo 'export LT_ACCESS_KEY="jZkan1f4AinKYV6e4ABLLCim37omYgiEjmgK4ePpwInnu3pmmh"' >> $BASH_ENV 
+            echo 'export LT_ACCESS_KEY="Rzh6Gt65tlWUzxdpP8lyOppCtKqfhZQezv57ibO8j1MMJ2Pyng"' >> $BASH_ENV 
 
       - run: # test what branch we're on.
           name: "Here is the LT_Username : "
