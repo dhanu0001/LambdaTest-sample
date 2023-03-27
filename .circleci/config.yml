@@ -1,65 +1,65 @@
-# Javascript Node CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
-#
-version: 2
+version: 2.1
+orbs:
+  lambda-tunnel: lambdatest/lambda-tunnel@1.0.5
+
+
+parameters:
+  lambdatest_email:
+        description: Specify your LambdaTest email
+        type: string
+        default: ""
+  lambdatest_key:
+        description: Specify environment var holding LambdaTest Access Key
+        type: string
+        default: "Rzh6Gt65tlWUzxdpP8lyOppCtKqfhZQezv57ibO8j1MMJ2Pyng"
+  docker:
+      type: string
+      default: "cimg/node:current"
+
+
+commands:
+  install-tunnel-binary:
+    steps:
+      - run: 
+          name: "Download and Extract tunnel binary"
+          command: |
+            sudo apt-get update && sudo apt-get install -y curl unzip iproute2 psmisc
+            curl -O https://downloads.lambdatest.com/tunnel/v3/linux/64bit/LT_Linux.zip
+            unzip LT_Linux.zip
+            rm LT_Linux.zip
+            chmod +x LT
+
 jobs:
   build:
     docker:
-      # specify the version you desire here
-      - image: circleci/node:7.10
-
-      # Specify service dependencies here if necessary
-
-    working_directory: ~/Nightwatch-circleci-selenium
-
+      - image: cimg/node:19.8.1
     steps:
       - checkout
+      - install-tunnel-binary
       
-      - run: 
-          name: "Downloading tunnel binary"
-          command: |
-            wget http://downloads.lambdatest.com/tunnel/linux/64bit/LT_Linux.zip
-      
-      - run: 
-          name: "Extracting tunnel binary"
-          command: |
-            sudo apt-get install unzip
-            unzip LT_Linux.zip
+      - run:
+           name: "Executing tunnel binary"
+           background: true
+           command: |
+             ./LT -user ${LAMBDATEST_EMAIL} -key ${LAMBDATEST_KEY}
+             sleep 40
 
-      - run: 
-          name: "Executing tunnel binary"
-          background: true
-          command: |
-            ./LT -user ${LAMBDATEST_EMAIL} -key ${LAMBDATEST_KEY}
-            sleep 40
-      
       - run: 
           name: "Setup custom environment variables"
           command: |
             echo 'export LT_USERNAME="${LAMBDATEST_USERNAME}"' >> $BASH_ENV
-
-      - run:
-          name: "Setup custom environment variables"
-          command: |
             echo 'export LT_ACCESS_KEY="${LAMBDATEST_ACCESS_KEY}"' >> $BASH_ENV
 
       - run: # test what branch we're on.
           name: "Here is the LT_Username : "
-          command: echo ${LT_USERNAME}       
-
-      # Download and cache dependencies
- #    - restore_cache:
- #        keys:
- #          - v1-dependencies-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is found
+          command: echo ${LT_USERNAME}
 
       - run: npm install
 
-#      - save_cache:
-#          paths:
-#            - node_modules
-#          key: v1-dependencies-{{ checksum "package.json" }}
-
-      # run tests!
       - run: node_modules/.bin/nightwatch -e chrome
+          
+
+workflows:
+  browser-test:
+    jobs:
+      - build
