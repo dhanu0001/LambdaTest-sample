@@ -12,9 +12,9 @@ parameters:
         description: Specify environment var holding LambdaTest Access Key
         type: string
         default: "Rzh6Gt65tlWUzxdpP8lyOppCtKqfhZQezv57ibO8j1MMJ2Pyng"
-  docker:
-      type: string
-      default: "cimg/node:current"
+  # docker:
+  #     type: string
+  #     default: ""
 
 
 commands:
@@ -23,8 +23,8 @@ commands:
       - run: 
           name: "Download and Extract tunnel binary"
           command: |
-            sudo apt-get update && sudo apt-get install -y curl unzip iproute2 psmisc
-            curl -O https://downloads.lambdatest.com/tunnel/v3/linux/64bit/LT_Linux.zip
+            wget http://downloads.lambdatest.com/tunnel/linux/64bit/LT_Linux.zip
+            sudo apt-get install unzip
             unzip LT_Linux.zip
             rm LT_Linux.zip
             chmod +x LT
@@ -32,7 +32,7 @@ commands:
 jobs:
   build:
     docker:
-      - image: cimg/node:8.0
+      - image: circleci/node:7.10
     steps:
       - checkout
       - install-tunnel-binary
