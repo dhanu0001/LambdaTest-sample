@@ -7,7 +7,7 @@ parameters:
   lambdatest_email:
         description: Specify your LambdaTest email
         type: string
-        default: ""
+        default: "dhanu.devops9907@gmail.com"
   lambdatest_key:
         description: Specify environment var holding LambdaTest Access Key
         type: string
@@ -32,7 +32,7 @@ commands:
 jobs:
   build:
     docker:
-      - image: cimg/node:19.8.1
+      - image: cimg/node:8.0
     steps:
       - checkout
       - install-tunnel-binary
@@ -41,7 +41,8 @@ jobs:
            name: "Executing tunnel binary"
            background: true
            command: |
-             ./LT -user ${LAMBDATEST_EMAIL} -key ${LAMBDATEST_KEY}
+            #  ./LT -user ${LAMBDATEST_EMAIL} -key ${LAMBDATEST_KEY}
+             ./LT  --user dhanu.devops9907@gmail.com --key Rzh6Gt65tlWUzxdpP8lyOppCtKqfhZQezv57ibO8j1MMJ2Pyng
              sleep 40
 
       - run: 
