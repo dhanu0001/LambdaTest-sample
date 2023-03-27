@@ -32,7 +32,7 @@ commands:
 jobs:
   build:
     docker:
-      - image: circleci/node:latest
+      - image: circleci/node:7.10
     steps:
       - checkout
       - install-tunnel-binary
@@ -50,7 +50,6 @@ jobs:
           command: |
             echo 'export LT_USERNAME="${LAMBDATEST_USERNAME}"' >> $BASH_ENV
             echo 'export LT_ACCESS_KEY="${LAMBDATEST_ACCESS_KEY}"' >> $BASH_ENV
-            ls -lrt /home/circleci/project/LT
 
       - run: # test what branch we're on.
           name: "Here is the LT_Username : "
@@ -58,10 +57,7 @@ jobs:
 
       - run: npm install
       
-
-      # - run: node_modules/.bin/nightwatch -e chrome
-          
-
+      - run: node_modules/.bin/nightwatch -e chrome
 workflows:
   browser-test:
     jobs:
